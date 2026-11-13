@@ -1,0 +1,7 @@
+func wrap(x) {
+  return x;
+}
+
+func main() {
+  system(wrap(getenv("CMD")));
+}

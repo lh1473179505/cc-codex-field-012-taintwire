@@ -1,0 +1,9 @@
+func main() {
+  raw = recv("q");
+  if (raw) {
+    q = sql_quote(raw);
+    sql_exec(q);
+  } else {
+    sql_exec(raw);
+  }
+}

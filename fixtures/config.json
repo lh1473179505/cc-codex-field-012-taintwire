@@ -1,0 +1,21 @@
+{
+  "sources": [
+    {"name": "getenv", "taint": "return", "kind": "env"},
+    {"name": "read_file", "taint": "return", "kind": "file"},
+    {"name": "recv", "taint": "return", "kind": "network"},
+    {"name": "param", "taint": "return", "kind": "param"}
+  ],
+  "sinks": [
+    {"name": "system", "tainted_args": [0], "kind": "cmdi"},
+    {"name": "eval", "tainted_args": [0], "kind": "eval"},
+    {"name": "sql_exec", "tainted_args": [0], "kind": "sqli"},
+    {"name": "write_file", "tainted_args": [0], "kind": "path"},
+    {"name": "http_post", "tainted_args": [0], "kind": "ssrf"}
+  ],
+  "sanitizers": [
+    {"name": "shell_escape", "clears": ["cmdi"], "taint": "return"},
+    {"name": "sql_quote", "clears": ["sqli"], "taint": "return"},
+    {"name": "path_norm", "clears": ["path"], "taint": "return"},
+    {"name": "url_encode", "clears": ["ssrf"], "taint": "return"}
+  ]
+}

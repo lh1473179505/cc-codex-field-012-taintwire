@@ -1,0 +1,5 @@
+func main() {
+  cmd = getenv("CMD");
+  safe = shell_escape(cmd);
+  system(safe);
+}
